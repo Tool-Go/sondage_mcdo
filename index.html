@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sondage Français / French Survey</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; padding: 15px; margin: 0; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 5px; font-size: 1.4em; }
+        .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 20px; font-size: 0.9em; }
+        .section-title { background: #e74c3c; color: white; padding: 10px; border-radius: 6px; margin: 25px 0 15px 0; font-size: 1.1em; }
+        .question-block { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .question-text { font-weight: bold; display: block; margin-bottom: 5px; }
+        .question-en { font-style: italic; color: #666; font-size: 0.9em; display: block; margin-bottom: 10px; }
+        .radio-group { display: flex; flex-direction: column; gap: 8px; }
+        .radio-label { display: block; background: #f9f9f9; border: 1px solid #ddd; padding: 14px; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+        .radio-label:active { background: #e0e0e0; }
+        input[type="radio"] { transform: scale(1.3); margin-right: 10px; }
+        input[type="text"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        
+        .submit-btn { width: 100%; padding: 16px; background: #27ae60; color: white; border: none; border-radius: 8px; font-size: 1.2em; font-weight: bold; cursor: pointer; margin-top: 20px; transition: background 0.3s; }
+        .submit-btn:hover { background: #219653; }
+        .submit-btn:disabled { background: #95a5a6; cursor: not-allowed; }
+
+        /* Styles gérés par Formspree Ajax */
+        [data-fs-success] {
+            display: none; /* Masqué par défaut */
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #c3e6cb;
+        }
+        [data-fs-error] {
+            color: #721c24;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Le Français au Quotidien</h1>
+    <div class="subtitle">French at Work Survey</div>
+
+    <!-- Message de succès géré automatiquement par Formspree -->
+    <div data-fs-success>
+        <strong>Merci ! Vos réponses ont été enregistrées avec succès.</strong><br>
+        <em>Thank you! Your answers have been successfully recorded.</em>
+    </div>
+
+    <!-- Le formulaire -->
+    <form id="evaluationForm">
+        
+        <div class="question-block">
+            <label class="question-text" for="nom_employe">Nom ou Prénom / Name (Optionnel)</label>
+            <input type="text" id="nom_employe" name="nom_employe" data-fs-field>
+        </div>
+
+        <div class="section-title">Service Client / Customer Service</div>
+
+        <div class="question-block">
+            <span class="question-text">1. Saluer le client / Greeting the customer</span>
+            <span class="question-en">"Bonjour, bienvenue !"</span>
+            <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="accueil" value="1" required data-fs-field> 1: Difficile / Can't say it</label>
+                <label class="radio-label"><input type="radio" name="accueil" value="2"> 2: Un peu / Need help</label>
+                <label class="radio-label"><input type="radio" name="accueil" value="3"> 3: Moyen / Understood with errors</label>
+                <label class="radio-label"><input type="radio" name="accueil" value="4"> 4: Très bien / Very comfortable</label>
+            </div>
+            <span data-fs-error="accueil"></span>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">2. Vocabulaire du Menu / Menu Vocabulary</span>
+            <span class="question-en">Comprendre "Un Trio", "Un Joyeux Festin", "Une Poutine"...</span>
+            <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="menu_vocab" value="1" required data-fs-field> 1: Difficile / Don't understand</label>
+                <label class="radio-label"><input type="radio" name="menu_vocab" value="2"> 2: Un peu / Understand some</label>
+                <label class="radio-label"><input type="radio" name="menu_vocab" value="3"> 3: Moyen / Manageable</label>
+                <label class="radio-label"><input type="radio" name="menu_vocab" value="4"> 4: Très bien / Very comfortable</label>
+            </div>
+            <span data-fs-error="menu_vocab"></span>
+        </div>
+
+        <div class="question-block">
+            <span class="question-text">3. Annoncer le prix / Announcing the price</span>
+            <span class="question-en">"Ça fera 12 dollars et 50 cents..."</span>
+            <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="prix" value="1" required data-fs-field> 1: Difficile / Can't say it</label>
+                <label class="radio-label"><input type="radio" name="prix" value="2"> 2: Un peu / Need help</label>
+                <label class="radio-label"><input type="radio" name="prix" value="3"> 3: Moyen / Understood</label>
+                <label class="radio-label"><input type="radio" name="prix" value="4"> 4: Très bien / Comfortable</label>
+            </div>
+            <span data-fs-error="prix"></span>
+        </div>
+
+        <div class="section-title">Avec les collègues / With Colleagues</div>
+
+        <div class="question-block">
+            <span class="question-text">4. Sécurité & Cuisine / Safety & Kitchen</span>
+            <span class="question-en">"Attention, c'est chaud !", "Passe-moi les frites"</span>
+            <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="securite" value="1" required data-fs-field> 1: Difficile / Can't say it</label>
+                <label class="radio-label"><input type="radio" name="securite" value="2"> 2: Un peu / Need help</label>
+                <label class="radio-label"><input type="radio" name="securite" value="3"> 3: Moyen / Understood</label>
+                <label class="radio-label"><input type="radio" name="securite" value="4"> 4: Très bien / Comfortable</label>
+            </div>
+            <span data-fs-error="securite"></span>
+        </div>
+
+        <!-- Le bouton se désactive tout seul pendant l'envoi grâce à data-fs-submit-btn -->
+        <button type="submit" class="submit-btn" data-fs-submit-btn>Envoyer / Submit</button>
+    </form>
+</div>
+
+<!-- Initialisation de Formspree -->
+<script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#evaluationForm', formId: 'mdablnzy' });
+</script>
+<!-- Chargement de la librairie Ajax Formspree -->
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
